@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Ingredientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/mostrarIngredientes.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:if="${ingredientes.isEmpty()}">
+        <h1 class="mensaje-vacio">No hay ingredientes para mostrar.</h1>
+    </div>
+    <div th:if="${not ingredientes.isEmpty()}">
+        <h1 class="titulo">Lista de Ingredientes</h1>
+        <div class="container">
+            <div class="card" th:each="ingrediente : ${ingredientes}">
+                <!-- Mostrar la imagen solo si base64Imagen no está vacío -->
+                <div th:if="${ingrediente.base64Imagen != ''}">
+                    <img th:src="'data:image/jpeg;base64,' + ${ingrediente.base64Imagen}" alt="Imagen de Ingrediente" />
+                </div>
+                <h3 th:text="${ingrediente.nombre}"></h3>
+                <p class="precio" th:text="'Precio: ' + ${ingrediente.precio} + '€'"></p>
+                <p th:text="'Stock: ' + ${ingrediente.stock}"></p>
+                <p th:text="'Fabricante: ' + ${ingrediente.fabricante}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="botones">
+        <a href="/ingredientes/gestion">Volver a la Gestión de Ingredientes</a>
+        <a href="/ingredientes/registrarNuevoIngrediente">Registrar un nuevo Ingrediente</a>
+        <a href="/ingredientes/comprarIngrediente">Comprar Un Ingrediente</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión De Empleados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/registrarEmpleado.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <h2>Registro de Empleados</h2>
+    <form class="formulario" th:action="@{/guardarEmpleado}" method="POST" th:object="${empleado}">
+        <div class="inputs">
+            <input type="text" placeholder="Nombre" th:field="*{nombre}">
+            <input type="text" placeholder="Apellidos" th:field="*{apellidos}">
+        </div>
+        <div class="inputs">
+            <input type="number" placeholder="Teléfono" th:field="*{telefono}">
+            <select id="rol" name="rol" class="input" required>
+                <option value="" disabled selected>Selecciona un rol</option>
+                <option value="Pasteles">Administrador</option>
+                <option value="Tartas">Empleado</option>
+            </select>
+        </div>
+        <div class="inputs">
+            <input type="text" placeholder="Usuario" th:field="*{usuario}">
+            <input type="password" placeholder="Contraseña" th:field="*{contrasenia}">
+        </div>
+        <button class="botonEnviar" type="submit">Registrar Empleado</button>
+    </form>
+    <div class="botones">
+        <a href="/gestionEmpleados">Volver a la Gestión de Empleados</a>
+        <a href="/administradorPanel">Inicio</a>
+    </div>
+    <!-- Modal para mostrar el resultado -->
+    <div id="resultadoModal" class="modal" th:if="${resultado != null and resultado != ''}">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('resultadoModal')">&times;</span>
+            <h2>Información</h2>
+            <p th:text="${resultado}"></p>
+        </div>
+    </div>
+</body>
+<script src="../scripts/modalInformativo.js"></script>
+
+</html>

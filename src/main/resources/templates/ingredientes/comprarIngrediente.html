@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comprar Ingredientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/comprarIngredientes.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="form-container">
+        <h1 class="titulo">Comprar Ingredientes</h1>
+        <form th:action="@{/ingredientes/guardarCompra}" method="post" class="compraFormulario">
+
+            <!-- Desplegable con la lista de ingredientes -->
+            <label for="ingrediente-select" class="form-label">Selecciona un Ingrediente:</label>
+            <select id="ingrediente-select" name="ingredienteNombre" class="form-select" required>
+                <option value="" disabled selected>Selecciona un ingrediente</option>
+                <option th:each="ingrediente : ${ingredientes}" th:value="${ingrediente.nombre}"
+                    th:text="${ingrediente.nombre}">
+                </option>
+            </select>
+
+            <label for="cantidad" class="form-label">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" class="form-input"
+                placeholder="Ingresa la cantidad que deseas comprar" min="1" required>
+
+            <button type="submit" class="submit-btn">Comprar</button>
+        </form>
+    </div>
+</body>
+
+</html>

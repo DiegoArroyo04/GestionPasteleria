@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Pedido</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/resumenPedido.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="hero">
+        <div class="heroContent">
+            <h1>Resumen del Pedido</h1>
+        </div>
+    </header>
+    <section class="resumenContainer">
+        <h2 class="titulo">Detalles del Pedido</h2>
+        <div class="pedidoGrid">
+            <div class="pedidoItem" th:each="producto : ${carrito}">
+                <img th:src="'data:image/jpeg;base64,' + ${producto.base64Imagen}" alt="Producto"
+                    class="pedidoImagen" />
+
+                <div class="pedidoInfo">
+                    <h3 th:text="${producto.nombre}" class="pedidoTitulo"></h3>
+                    <p class="pedidoDescripcion" th:text="${producto.descripcion}"></p>
+                </div>
+
+                <div class="pedidoDetalles">
+                    <p class="pedidoCantidad">Cantidad: <span th:text="${producto.cantidadProducto}"></span></p>
+                    <p class="pedidoPrecio" th:text="${producto.precio} + '€'"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pedidoResumen">
+            <p class="pedidoTotal">Total: <span th:text="${precioTotal} + '€'"></span></p>
+            <a href="/clientes/clientesHome" class="volverTienda">Volver a la tienda</a>
+            <a id="generarFactura" class="volverTienda">Generar Factura</a>
+        </div>
+    </section>
+    <a href="/cerrarSesion" class="botonIzquierdo">
+        <img src="../assets/cerrarSesion.png" alt="Icono" class="iconoIzquierdo">
+    </a>
+    <footer>
+        <p>&copy; 2025 Pastelería Dulce De Siempre. Todos los derechos reservados.</p>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../scripts/resumenPedido.js"></script>
+
+</html>

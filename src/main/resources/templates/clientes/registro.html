@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear una Cuenta En Dulce De Siempre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/registro.css">
+    <link rel="icon" href="assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="containerRegistro" id="containerRegistro">
+        <img src="../assets/logos/logoPasteleria.png" class="logo">
+        <form th:action="@{/clientes/guardarCliente}" method="post" th:object="${cliente}">
+            <div class=" inputs">
+                <input type="text" class="input" placeholder="NOMBRE" th:field="*{nombre}" required>
+                <input type="text" class="input" placeholder="APELLIDOS" th:field="*{apellidos}" required>
+                <input type="text" class="input" placeholder="DIRECCION" th:field="*{direccion}" required>
+                <input type="number" class="input" placeholder="TELEFONO" th:field="*{telefono}" required>
+                <input type="email" class="input" placeholder="EMAIL" th:field="*{email}" required>
+                <input type="text" class="input" placeholder="USUARIO" th:field="*{usuario}" required>
+                <input type="password" class="input" placeholder="CONTRASEÑA" th:field="*{contrasenia}" required>
+                <input type="password" class="input" placeholder="CONFIRMAR CONTRASEÑA" required>
+            </div>
+            <div class="componentesAbajoFormulario">
+                <div class="terminosCondiciones">
+                    <label for="terminos" class="enlaces">Acepto los <a id="terminosCondiciones">términos y
+                            condiciones</a> </label>
+                    <input type="checkbox" id="terminos" class="checkTerminos">
+                </div>
+                <button class="registrarseBoton" type="submit" id="registrarseBoton">REGISTRARSE</button>
+            </div>
+        </form>
+        <div class="iniciarSesion">
+            <p>¿Ya tienes una cuenta?</p>
+            <a href="/">Iniciar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Modal de Términos y Condiciones -->
+    <div id="modalTerminosCondiciones" class="modal">
+        <div class="modalContenido">
+            <span class="cerrar" id="cerrarTerminosCondiciones">&times;</span>
+            <h2>Términos y Condiciones</h2>
+            <p>Al realizar un pedido en Dulce de Siempre, aceptas nuestras políticas. Los precios y la disponibilidad de
+                los productos pueden cambiar sin previo aviso.</p>
+            <p>Nos reservamos el derecho de corregir cualquier error en los precios o descripciones antes de procesar un
+                pedido. Verifica toda la información antes de completar tu compra.</p>
+            <button class="botonAceptar" id="botonAceptarTerminos">Acepto los Términos y Condiciones</button>
+        </div>
+    </div>
+
+    <!-- Modal de Error (solo si hay error) -->
+    <div th:if="${error != null}" id="modalError" class="modal">
+        <div class="modalContenido">
+            <span class="cerrar" id="cerrarModalError">&times;</span>
+            <h2>Error</h2>
+            <p th:text="${error}"></p>
+            <button class="botonAceptar" id="botonAceptarError">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="../scripts/registro.js"></script>
+</body>
+
+</html>

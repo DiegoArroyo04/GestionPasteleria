@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/administracion.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Panel de Administración</h1>
+
+    <div class="botones">
+        <a href="/productos/gestion">GESTIÓN DE PRODUCTOS</a>
+        <a href="ingredientes/gestion">GESTIÓN DE INGREDIENTES</a>
+        <a href="pedidos/gestion">GESTIÓN DE PEDIDOS</a>
+        <!-- Boton visible en usuarios empleados -->
+        <a href="/gestionEmpleados" th:if="${empleado.rol == 'Administrador'}">GESTIÓN DE EMPLEADOS</a>
+        <!-- Formulario para comenzar y terminar jornada si es Empleado -->
+        <form th:if="${empleado.rol == 'Empleado'}" th:action="@{/empleados/jornada}" method="post">
+            <button type="submit" name="accion" value="comenzar" class="boton"
+                th:if="${jornadaActiva == null or jornadaActiva == false}">
+                COMENZAR JORNADA
+            </button>
+
+            <button type="submit" name="accion" value="terminar" class="boton rojo" th:if="${jornadaActiva == true}">
+                TERMINAR JORNADA
+            </button>
+        </form>
+        <a href="/cerrarSesion">CERRAR SESIÓN</a>
+    </div>
+</body>
+
+</html>

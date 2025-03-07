@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    cursor: url(../assets/cursor.png), auto;
+}
+
+body {
+    background-color: #f8f4f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.hero {
+    background-image: url('../assets/headerFondo.png');
+    background-color: rgba(213, 123, 141, 0.5);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(213, 123, 141, 0.5);
+    z-index: 0;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+.resumenContainer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+    flex: 1;
+}
+
+.titulo {
+    font-size: 2rem;
+    color: #d57b8d;
+    margin-bottom: 20px;
+}
+
+.pedidoGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pedidoItem {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pedidoImagen {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.pedidoInfo {
+    flex: 1;
+    text-align: left;
+}
+
+.pedidoTitulo {
+    font-size: 1.2rem;
+    color: #d57b8d;
+    margin-bottom: 5px;
+}
+
+.pedidoDescripcion {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.pedidoDetalles {
+    text-align: right;
+}
+
+.pedidoCantidad {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.pedidoPrecio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.pedidoResumen {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pedidoTotal {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d57b8d;
+    margin-bottom: 20px;
+}
+
+.confirmarPedido {
+    background-color: #42a5f5;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirmarPedido:hover {
+    background-color: #1e88e5;
+}
+
+.pedidoVacio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffe0e0;
+    color: #d32f2f;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.pedidoVacio h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.pedidoVacio p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.volverTienda {
+    display: inline-block;
+    background-color: #d57b8d;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.volverTienda:hover {
+    background-color: #b3546d;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+}
+
+
+
+.botonIzquierdo {
+    background-color: #d57b8d;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.botonIzquierdo:hover {
+    transform: scale(1.1);
+}
+
+.iconoIzquierdo {
+    width: 32px;
+    height: 32px;
+}
+
+
+
+footer {
+    background-color: #90caf9;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+}
+
+footer p {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .pedidoItem {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pedidoImagen {
+        margin-bottom: 10px;
+    }
+
+    .pedidoDetalles {
+        text-align: center;
+        margin-top: 10px;
+    }
+}

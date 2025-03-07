@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasteleria Dulce de Siempre - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/clientes.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="hero">
+        <div class="heroContent">
+            <h1>Pasteleria Dulce De Siempre</h1>
+            <p>Descubre nuestra exquisita gama de tartas y repostería hechas con amor.</p>
+            <a href="#productoSection" class="btn">Descubir Productos </a>
+        </div>
+    </header>
+    <section id="productoSection" class="productoSection">
+        <h2 class="titulo">Nuestros Productos</h2>
+        <div class="productoGrid">
+            <!-- Se itera la lista de productos -->
+            <div class="productos" th:each="producto : ${productos}">
+                <!-- Mostrar imagen si existe -->
+                <div th:if="${producto.base64Imagen != ''}">
+                    <img th:src="'data:image/jpeg;base64,' + ${producto.base64Imagen}" alt="Product Image"
+                        class="productoImagen" />
+                </div>
+                <h3 class="productosh3" th:text="${producto.nombre}"></h3>
+                <p class="productoPrecio" th:text="${producto.precio}+'€'"></p>
+                <p class="productoDescripcion" th:text="${producto.descripcion}"></p>
+                <p th:text="'Categoría: ' + ${producto.categoria}"></p>
+
+                <form method="POST" th:action="@{/clientes/aniadirAlCarrito}">
+                    <div class="controlBotones">
+                        <input type="hidden" name="id" th:value="${producto.id}" />
+                        <input type="hidden" class="hiddenCantidad" name="cantidadProducto" value="1" />
+                        <button id="menos" class="botonesMasMenos menos">-</button>
+                        <p class="cantidadProducto">1</p>
+                        <button class="botonesMasMenos mas">+</button>
+                    </div>
+                    <button class="productosbtn">Añadir al Carrito</button>
+                </form>
+            </div>
+        </div>
+        <form class="formCarrito" method="GET" th:action="@{/clientes/carrito}">
+            <button class="carrito" type="submit">
+                <span class="contadorCarrito" id="contadorCarrito"
+                    th:text="${totalProductosCarrito == null ? '0' : totalProductosCarrito}"></span>
+            </button>
+        </form>
+        <a href="/cerrarSesion" class="botonIzquierdo">
+            <img src="../assets/cerrarSesion.png" alt="Icono" class="iconoIzquierdo">
+        </a>
+    </section>
+    <footer>
+        <p>&copy; 2025 Pasteleria Dulce De Siempre. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../scripts/clientesHome.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Ingrediente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/registrarIngredienteNuevo.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Registrar Ingrediente</h1>
+    <form action="/ingredientes/guardar" method="POST" th:object="${ingrediente}" enctype="multipart/form-data">
+
+
+        <input type="text" id="nombre" class="input" placeholder="Nombre del ingrediente" th:field="*{nombre}" required>
+
+        <input type="number" id="precio" th:field="*{precio}" class="input" placeholder="Precio del ingrediente"
+            required step="0.01">
+
+        <input type="number" id="stock" th:field="*{stock}" class="input" placeholder="Cantidad en stock" required>
+
+
+        <input type="text" id="fabricante" th:field="*{fabricante}" class="input"
+            placeholder="Fabricante del ingrediente" required>
+
+
+        <div class="form-group">
+            <label for="imagen">Imagen:</label>
+            <input type="file" th:field="*{imagenIngrediente}" id="imagen" class="input" accept="image/*">
+        </div>
+
+        <button type="submit" class="registrarseBoton">Registrar Ingrediente</button>
+    </form>
+
+    <div class="volver">
+        <a href="/ingredientes/gestion">Volver a la Gestión de Ingredientes</a>
+    </div>
+</body>
+
+</html>

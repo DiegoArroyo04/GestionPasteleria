@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadisticas Semanales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/mostrarEmpleados.css">
+</head>
+
+<body>
+    <section class="contenido">
+        <h1>Estadisticas productos mas vendidos</h1>
+        <!-- Mensaje si no hay productos -->
+        <div th:if="${productos.isEmpty()}" class="no-empleados">
+            <p>No se han encontrado productos disponibles.</p>
+        </div>
+        <div class="tabla-container" th:if="${not productos.isEmpty()}">
+            <table class="empleados-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Cantidad Vendida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se recorrerá la lista de productos -->
+                    <tr th:each="producto : ${productos}">
+                        <td th:text="${producto.id}"></td>
+                        <td th:text="${producto.nombre}"></td>
+                        <td th:text="${producto.descripcion}"></td>
+                        <td th:text="${producto.precio}"></td>
+                        <td th:text="${producto.stock}"></td>
+                        <td th:text="${producto.categoria}"></td>
+                        <td th:text="${producto.cantidadProducto}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="botones">
+            <a href="/pedidos/gestion">Volver a la Gestión de Pedidos</a>
+            <a href="/administradorPanel">Inicio</a>
+        </div>
+    </section>
+</body>
+
+</html>

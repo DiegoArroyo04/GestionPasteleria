@@ -1,0 +1,85 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f4f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+a {
+
+    background-color: #90caf9;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #42a5f5;
+}
+
+a:focus {
+    outline: none;
+}
+
+
+
+.boton {
+    background-color: #90caf9;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.boton:hover {
+    background-color: #42a5f5;
+}
+
+.boton:focus {
+    outline: none;
+}
+
+/* Estilo para el botón rojo de terminar jornada */
+.boton.rojo {
+    background-color: #e57373;
+}
+
+.boton.rojo:hover {
+    background-color: #d32f2f;
+}

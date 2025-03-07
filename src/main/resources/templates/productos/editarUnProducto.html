@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/registrarProducto.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Editar Producto</h1>
+
+    <div class="formulario">
+        <form th:action="@{/productos/actualizarProducto}" method="POST" th:object="${producto}"
+            enctype="multipart/form-data">
+
+            <!-- Campo oculto para enviar el ID del producto -->
+            <input type="hidden" th:field="*{id}">
+
+            <label for="nombre">Nombre del producto:</label>
+            <input type="text" id="nombre" class="input" placeholder="Nombre del producto" th:field="*{nombre}"
+                required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" th:field="*{descripcion}" rows="4" cols="50" maxlength="255"></textarea>
+
+            <label for="precio">Precio (€):</label>
+            <input type="number" id="precio" th:field="*{precio}" class="input" required step="0.01">
+
+            <label for="stock">Cantidad en stock:</label>
+            <input type="number" id="stock" th:field="*{stock}" class="input" required>
+
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" th:field="*{categoria}" class="input" required>
+                <option value="" disabled>Selecciona una categoría</option>
+                <option value="Pasteles" th:selected="${producto.categoria == 'Pasteles'}">Pasteles</option>
+                <option value="Tartas" th:selected="${producto.categoria == 'Tartas'}">Tartas</option>
+                <option value="Postres" th:selected="${producto.categoria == 'Postres'}">Postres</option>
+                <option value="Galletas" th:selected="${producto.categoria == 'Galletas'}">Galletas</option>
+            </select>
+
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" th:field="*{imagenProducto}" id="imagen" class="input" accept="image/*">
+            </div>
+
+            <!-- Si el producto ya tiene una imagen, la mostramos -->
+            <div th:if="${producto.base64Imagen != null}">
+                <p>Imagen actual:</p>
+                <img th:src="'data:image/jpeg;base64,' + ${producto.base64Imagen}" alt="Imagen del Producto"
+                    width="150">
+            </div>
+
+            <button type="submit" class="registrarseBoton">Actualizar Producto</button>
+        </form>
+    </div>
+
+    <div class="volver">
+        <a href="/productos/gestion">Volver a la Gestión de Productos</a>
+    </div>
+</body>
+
+</html>

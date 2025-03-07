@@ -1,0 +1,229 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f4f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #d57b8d;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Contenedor principal */
+.contenido {
+    width: 90%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Tabla */
+.tabla-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.empleados-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.empleados-table th,
+.empleados-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.empleados-table th {
+    background-color: #d57b8d;
+    color: white;
+    font-weight: 600;
+}
+
+.empleados-table tr:nth-child(even) {
+    background-color: #f8f4f0;
+}
+
+.empleados-table tr:hover {
+    background-color: #f1d9df;
+}
+
+
+.boton-entregar {
+    background-color: #ffb74d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.boton-entregar:hover {
+    background-color: #ff9800;
+
+}
+
+.boton-entregar:focus {
+    outline: none;
+}
+
+
+
+/* Mensaje de no hay  empleados */
+.no-empleados {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #706a66;
+    margin-top: 20px;
+}
+
+.botones {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4% 0;
+    gap: 15px;
+}
+
+a {
+
+    background-color: #90caf9;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px auto;
+}
+
+a:hover {
+    background-color: #42a5f5;
+}
+
+a:focus {
+    outline: none;
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal h2 {
+    color: #d57b8d;
+    margin-bottom: 15px;
+}
+
+.modal p {
+    color: #706a66;
+    font-size: 1.2rem;
+}
+
+.close {
+    color: #d57b8d;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.close:hover {
+    color: #42a5f5;
+}
+
+.modal.mostrar {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+
+    a {
+        font-size: 15px;
+        width: 200px;
+        padding: 10px;
+    }
+
+
+    .empleados-table th,
+    .empleados-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    a {
+        font-size: 15px;
+        width: 200px;
+        padding: 10px;
+    }
+
+    .empleados-table th,
+    .empleados-table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

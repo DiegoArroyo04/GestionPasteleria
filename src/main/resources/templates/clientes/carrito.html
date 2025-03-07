@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/carrito.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init('UgssXz6u-3xB1PrGE')
+    </script>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="heroContent">
+            <h1>Carrito de Compras</h1>
+            <p>Revisa tu selección antes de finalizar la compra.</p>
+        </div>
+    </header>
+
+    <section class="carritoContainer" th:if="${carrito != null and not carrito.isEmpty()}">
+        <h2 class="titulo">Tu Carrito</h2>
+        <div class="carritoGrid">
+            <div class="carritoItem" th:each="producto : ${carrito}">
+                <img th:src="'data:image/jpeg;base64,' + ${producto.base64Imagen}" alt="Producto"
+                    class="carritoImagen" />
+
+                <div class="carritoInfo">
+                    <h3 th:text="${producto.nombre}" class="carritoTitulo"></h3>
+                    <p class="carritoDescripcion" th:text="${producto.descripcion}"></p>
+                </div>
+
+                <div class="carritoDetalles">
+                    <p class="carritoCantidad">Cantidad: <span th:text="${producto.cantidadProducto}"></span></p>
+                    <p class="carritoPrecio" th:text="${producto.precio} + '€'"></p>
+                    <form method="GET" th:action="@{/clientes/eliminarProductoCarrito}">
+                        <input type="hidden" name="id" th:value="${producto.id}" />
+                        <button type="submit" class="eliminarProducto">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="carritoResumen">
+            <p class="carritoTotal">Total: <span th:text="${precioTotal} + '€'"></span></p>
+
+            <form method="POST" id="pedidoForm" th:action="@{/clientes/tramitarPedido}">
+                <input type="hidden" name="precioTotal" th:value="${precioTotal}" />
+                <input type="hidden" name="email" th:value="${emailCliente}" />
+                <input type="hidden" name="nombreCliente" th:value="${nombreCliente}" />
+                <div class="observacionesContainer">
+                    <textarea id="observaciones" name="observaciones" rows="4" maxlength="255"
+                        placeholder="Añade aquí tus observaciones antes de tramitar el pedido si es necesario..."></textarea>
+                </div>
+                <button class="tramitarPedido" id="tramitarPedido" type="submit">Tramitar Pedido</button>
+            </form>
+            <a href="/clientes/clientesHome" class="volverTienda">Volver a la tienda</a>
+        </div>
+    </section>
+
+    <!-- Mostrar mensaje de error si el carrito está vacío -->
+    <div th:if="${carrito == null or carrito.isEmpty()}" class="carritoVacio">
+        <h2 th:text="${error}">Tu carrito está vacío</h2>
+        <p>Agrega productos para continuar con la compra.</p>
+        <a href="/clientes/clientesHome" class="volverTienda">Volver a la tienda</a>
+    </div>
+    <a href="/cerrarSesion" class="botonIzquierdo">
+        <img src="../assets/cerrarSesion.png" alt="Icono" class="iconoIzquierdo">
+    </a>
+    <footer>
+        <p>&copy; 2025 Pasteleria Dulce De Siempre. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../scripts/carrito.js"></script>
+</body>
+
+</html>

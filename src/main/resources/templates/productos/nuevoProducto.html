@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/registrarProducto.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Registrar Producto</h1>
+
+    <!-- Mensaje de error si no hay ingredientes -->
+    <div th:if="${ingredientesExistentes.isEmpty()}">
+        <p class="error">Es necesario registrar ingredientes antes de crear un producto.</p>
+        <a href="/ingredientes/registrarNuevoIngrediente" class="registrarseBoton">Registrar Ingredientes</a>
+    </div>
+
+    <div class="formulario" th:if="${!ingredientesExistentes.isEmpty()}">
+
+        <form action="/productos/guardar" method="POST" th:object="${producto}" enctype="multipart/form-data">
+
+            <input type="text" id="nombre" class="input" placeholder="Nombre del producto" th:field="*{nombre}"
+                required>
+
+            <label for="descripcion">Descripción:</label>
+
+            <textarea id="descripcion" th:field="*{descripcion}" rows="4" cols="50" maxlength="255"></textarea>
+
+            <input type="number" id="precio" th:field="*{precio}" class="input" placeholder="Precio del producto"
+                required step="0.01">
+
+            <input type="number" id="stock" th:field="*{stock}" class="input" placeholder="Cantidad en stock" required>
+
+
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" class="input" required>
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <option value="Pasteles">Pasteles</option>
+                <option value="Tartas">Tartas</option>
+                <option value="Postres">Postres</option>
+                <option value="Galletas">Galletas</option>
+            </select>
+
+            <div class="ingredientesAniadir">
+                <h3>Seleccionar Ingredientes</h3>
+                <div id="ingredientesContainer">
+                    <div class="ingrediente-item">
+                        <label for="ingrediente">Ingrediente:</label>
+                        <select name="ingredientes[0].nombre" class="input" required>
+                            <option value="" disabled selected>Selecciona un ingrediente</option>
+                            <option th:each="ingrediente : ${ingredientesExistentes}" th:value="${ingrediente.nombre}"
+                                th:text="${ingrediente.nombre}">
+                            </option>
+                        </select>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="ingredientes[0].cantidad" class="input"
+                            placeholder="Cantidad necesaria" required>
+                    </div>
+                </div>
+                <button type="button" id="aniadirIngrediente">Añadir Mas Ingredientes</button>
+            </div>
+
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" th:field="*{imagenProducto}" id="imagen" class="input" accept="image/*">
+            </div>
+
+            <button type="submit" class="registrarseBoton">Registrar Producto</button>
+        </form>
+    </div>
+
+    <div class="volver">
+        <a href="/productos/gestion">Volver a la Gestión de Productos</a>
+    </div>
+</body>
+<script th:inline="javascript">
+    const ingredientesExistentes = /*[[${ingredientesExistentes}]]*/[];
+</script>
+<script src="../scripts/nuevoProducto.js"></script>
+
+</html>

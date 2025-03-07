@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+
+
+}
+
+body {
+    background-color: #F5F5F5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: url(../assets/cursor.png), auto;
+
+}
+
+@keyframes aparecerModal {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+.containerLogin {
+    width: 50%;
+    max-width: 800px;
+    background-color: #F8C8D8;
+    height: 69.7%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    position: relative;
+    animation: aparecerModal 2s ease-out;
+}
+
+.logo {
+    position: absolute;
+    width: 30%;
+    top: -25%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.containerLogin form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.input {
+    margin-bottom: 6%;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-radius: 8px;
+    border: solid 1px #D1D1D1;
+    color: #6B6B6B;
+    width: 42%;
+    height: 13.2%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+        0px 2px 4px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    font-size: 1rem;
+    z-index: 1;
+    padding: 2%;
+}
+
+.input:hover,
+.input:focus {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15),
+        0px 3px 6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    outline: none;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+}
+
+.input::placeholder {
+    color: #6B6B6B;
+    font-size: 1rem;
+}
+
+.terminosCondiciones {
+    display: flex;
+}
+
+.iniciarSesionBoton {
+    width: 37.2%;
+    height: 11.9%;
+    background-color: #D57B8D;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 28px;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+    border: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.iniciarSesionBoton:hover {
+    transform: scale(1.03);
+}
+
+.enlaces {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
+}
+
+.enlaces a {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #706A66;
+    text-decoration: none;
+    width: 39%;
+    text-align: center;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+
+}
+
+.enlaces a:hover {
+    text-decoration: underline;
+    color: #D57B8D;
+}
+
+
+/* Estilo general para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    align-items: center;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #F8C8D8;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #D57B8D;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    text-align: center;
+    animation: aparecerModal 0.5s ease-out;
+}
+
+/* Botón de cierre del modal */
+.close {
+    color: #D57B8D;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+    animation: transform 0.2s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+    transform: scale(1.1);
+    text-decoration: none;
+    cursor: url('../assets/cursorPointer.png'), pointer;
+}
+
+/* Texto dentro del modal */
+.modal-content p {
+    color: #706A66;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+/* Animación para el modal */
+@keyframes aparecerModal {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+/* Media Queries para pantallas de dispositivos medianos y pequeños */
+@media screen and (max-width: 1024px) {
+
+    /* Para tablets y pantallas medianas */
+    .containerLogin {
+        width: 80%;
+        height: 50%;
+    }
+
+    .logo {
+        width: 35%;
+        top: -18%;
+    }
+
+    .input {
+        width: 70%;
+        height: 45px;
+    }
+
+    .iniciarSesionBoton {
+        width: 70%;
+        height: 50px;
+    }
+
+    .enlaces a {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Para pantallas de tablets o smartphones más grandes */
+    .containerLogin {
+        width: 80%;
+        height: 60%;
+    }
+
+    .logo {
+        width: 40%;
+        top: -20%;
+    }
+
+    .input {
+        width: 80%;
+        height: 45px;
+    }
+
+    .iniciarSesionBoton {
+        width: 80%;
+        height: 50px;
+    }
+
+    .enlaces a {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    /* Para dispositivos móviles pequeños */
+    .containerLogin {
+        width: 90%;
+        height: 50.7%;
+    }
+
+    .logo {
+        width: 45%;
+        top: -25%;
+    }
+
+    .input {
+        width: 90%;
+        height: 40px;
+    }
+
+    .iniciarSesionBoton {
+        width: 90%;
+        height: 45px;
+    }
+
+    .enlaces a {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    /* Para pantallas de smartphones más pequeñas (iPhone 5 y similares) */
+    .containerLogin {
+        width: 95%;
+        height: 50.7%;
+    }
+
+    .logo {
+        width: 40%;
+        top: -25%;
+    }
+
+    .input {
+        width: 95%;
+        height: 40px;
+    }
+
+    .iniciarSesionBoton {
+        width: 95%;
+        height: 45px;
+    }
+
+    .enlaces a {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+    /* Para pantallas extremadamente pequeñas (iPhone SE, dispositivos muy compactos) */
+    .containerLogin {
+        width: 95%;
+        height: 69.7%;
+    }
+
+    .logo {
+        width: 50%;
+        top: -30%;
+    }
+
+    .input {
+        width: 95%;
+        height: 35px;
+    }
+
+    .iniciarSesionBoton {
+        width: 95%;
+        height: 45px;
+    }
+
+    .enlaces a {
+        font-size: 0.8rem;
+    }
+}

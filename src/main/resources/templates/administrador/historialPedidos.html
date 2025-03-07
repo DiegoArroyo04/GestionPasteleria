@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion De Pedidos-Historial De Pedidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/mostrarEmpleados.css">
+</head>
+
+<body>
+    <section class="contenido">
+        <h1>Registro Pedidos</h1>
+        <!-- Mensaje si no hay pedidos -->
+        <div th:if="${pedidos.isEmpty()}" class="no-empleados">
+            <p>No se han encontrado registros disponibles.</p>
+        </div>
+        <div class="tabla-container" th:if="${not pedidos.isEmpty()}">
+            <table class="empleados-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Productos</th>
+                        <th>Precio</th>
+                        <th>Observaciones</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se recorrerá la lista de pedidos -->
+                    <tr th:each="pedido : ${pedidos}">
+                        <td th:text="${pedido.idPedido}"></td>
+                        <td th:text="${pedido.cliente.nombre + ' ' + pedido.cliente.apellidos}"></td>
+                        <td th:text="${pedido.fecha}"></td>
+                        <td th:text="${pedido.productos}"></td>
+                        <td th:text="${pedido.precio}"></td>
+                        <td th:text="${pedido.observaciones}"></td>
+                        <td th:text="${pedido.estado}"></td>
+                        <td>
+                            <!-- Mostrar el botón solo si el estado es "Pendiente" -->
+                            <form th:if="${pedido.estado == 'Pendiente'}" th:action="@{/pedidos/entregar}"
+                                method="post">
+                                <input type="hidden" name="idPedido" th:value="${pedido.idPedido}" />
+                                <button type="submit" class="boton-entregar">Entregar Pedido</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="resultadoModal" class="modal" th:if="${alerta != null and alerta != ''}">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('resultadoModal')">&times;</span>
+                <h2>Alerta</h2>
+                <p th:text="${alerta}"></p>
+                <a href="/productos/fabricar">Fabricar Un Producto</a>
+            </div>
+        </div>
+
+        <div id="errorStock" class="modal" th:if="${errorStock != null and errorStock != ''}">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('errorStock')">&times;</span>
+                <h2>No se ha podido entregar el pedido</h2>
+                <p th:text="${errorStock}"></p>
+                <a href="/productos/fabricar">Fabricar Un Producto</a>
+            </div>
+        </div>
+
+        <div class="botones">
+            <a href="/pedidos/gestion">Volver a la Gestión de Pedidos</a>
+            <a href="/productos/fabricar">Fabricar Un Producto</a>
+            <a href="/administradorPanel">Inicio</a>
+        </div>
+    </section>
+</body>
+<script src="../scripts/modalInformativo.js"></script>
+
+</html>

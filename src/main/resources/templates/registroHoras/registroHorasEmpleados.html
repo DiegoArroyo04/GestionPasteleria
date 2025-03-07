@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion De Empleados-Registros Horas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/mostrarEmpleados.css">
+</head>
+
+<body>
+    <section class="contenido">
+        <h1>Registro Horas Empleados</h1>
+        <!-- Mensaje si no hay empleados -->
+        <div th:if="${registros.isEmpty()}" class="no-empleados">
+            <p>No se han encontrado registros disponibles.</p>
+        </div>
+        <div class="tabla-container" th:if="${not registros.isEmpty()}">
+            <table class="empleados-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Hora Entrada</th>
+                        <th>Hora Salida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se recorrerá la lista de registros -->
+                    <tr th:each="registro : ${registros}">
+                        <td th:text="${registro.empleado.idEmpleado}"></td>
+                        <td th:text="${registro.empleado.nombre}"></td>
+                        <td th:text="${registro.empleado.apellidos}"></td>
+                        <td th:text="${registro.horaEntrada}"></td>
+                        <td th:text="${registro.horaSalida}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="botones">
+            <a href="/gestionEmpleados">Volver a la Gestión de Empleados</a>
+            <a href="/administradorPanel">Inicio</a>
+        </div>
+    </section>
+</body>
+
+</html>

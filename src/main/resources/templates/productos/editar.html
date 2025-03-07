@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/mostrarIngredientes.css">
+    <link rel="icon" href="../assets/logos/logoPasteleria.png" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <!-- Mensaje de error si no hay productos -->
+    <div th:if="${productos.isEmpty()}">
+        <p class="error">Es necesario registrar productos antes de editarlos.</p>
+        <a href="/productos/registrarNuevoProducto" class="registrarseBoton">Registrar Productos</a>
+    </div>
+
+    <h1 class="titulo">Editar Un Producto</h1>
+    <h1 class="titulo">Seleccione Un Producto</h1>
+    <div th:if="${not productos.isEmpty()}" class="container">
+        <div class="card" th:each="producto : ${productos}">
+            <!-- Mostrar la imagen solo si base64Imagen no está vacío -->
+            <div th:if="${producto.base64Imagen != ''}">
+                <img th:src="'data:image/jpeg;base64,' + ${producto.base64Imagen}" alt="Imagen de Producto" />
+            </div>
+            <h3 th:text="${producto.nombre}"></h3>
+            <p class="precio" th:text="'Precio: ' + ${producto.precio} + '€'"></p>
+            <p th:text="'Stock: ' + ${producto.stock}"></p>
+            <p th:text="'Descripción: ' + ${producto.descripcion}"></p>
+            <p th:text="'Categoría: ' + ${producto.categoria}"></p>
+            <p>
+                Ingredientes:
+                <span th:each="productoIngrediente, iterStat : ${producto.ingredientesSet}">
+                    <span th:text="${productoIngrediente.ingrediente.nombre}"></span>
+                    <span th:if="${!iterStat.last}">, </span>
+                </span>
+            </p>
+            <!-- Formulario para editar producto -->
+            <form th:action="@{/productos/buscarProductoAEditar}" method="post">
+                <input type="hidden" name="idProducto" th:value="${producto.id}" />
+                <button type="submit" class="fabricar-btn">Editar Producto</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="botones">
+        <a href="/productos/gestion">Volver a la Gestión de Productos</a>
+    </div>
+
+</body>
+
+
+</html>

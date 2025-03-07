@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f4f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.titulo {
+    font-size: 2rem;
+    color: #d57b8d;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.compraFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-label {
+    font-size: 1rem;
+    color: #706a66;
+    margin-bottom: 1%;
+}
+
+.form-select,
+.form-input {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.form-select:focus,
+.form-input:focus {
+    border-color: #d57b8d;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #90caf9;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #42a5f5;
+}
+
+/* Ajustes responsivos */
+@media screen and (max-width: 480px) {
+    .form-container {
+        padding: 20px;
+        width: 92%;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+    }
+}
